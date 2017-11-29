@@ -189,7 +189,7 @@ type Viper struct {
 // New returns an initialized Viper instance.
 func New() *Viper {
 	v := new(Viper)
-	v.keyDelim = "."
+	v.keyDelim = "#"
 	v.configName = "config"
 	v.fs = afero.NewOsFs()
 	v.config = make(map[string]interface{})
