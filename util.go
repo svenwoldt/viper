@@ -51,7 +51,7 @@ func copyAndInsensitiviseMap(m map[string]interface{}) map[string]interface{} {
 	nm := make(map[string]interface{})
 
 	for key, val := range m {
-		lkey := strings.ToLower(key)
+		lkey := key
 		switch v := val.(type) {
 		case map[interface{}]interface{}:
 			nm[lkey] = copyAndInsensitiviseMap(cast.ToStringMap(v))
@@ -77,13 +77,8 @@ func insensitiviseMap(m map[string]interface{}) {
 			insensitiviseMap(val.(map[string]interface{}))
 		}
 
-		lower := strings.ToLower(key)
-		if key != lower {
-			// remove old key (not lower-cased)
-			delete(m, key)
-		}
 		// update map
-		m[lower] = val
+		m[key] = val
 	}
 }
 
